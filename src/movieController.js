@@ -41,7 +41,7 @@ export const handlePostCreate = async (req, res) => {
 };
 export const handleSearch = async (req, res) => {
   const {
-    query: { term: searchingBy, rating: searchRating }
+    query: { term: searchingBy, rating: searchRating, year: searchYear }
   } = req;
   let movies = [];
   try {
@@ -50,21 +50,25 @@ export const handleSearch = async (req, res) => {
         title: { $regex: searchingBy, $options: "i" }
       });
     } else if (searchRating) {
-      console.log(searchRating);
       movies = await Movie.find({ rating: { $gte: searchRating } });
-    } else {
-      throw Error("404 not Found");
+    } else if (searchYear) {
+      movies = await Movie.find({ year: { $gte: searchYear } });
     }
   } catch (error) {
     console.log(error);
   }
-  res.render("search", { pageTitle: "SEARCH", searchingBy, movies });
+  res.render("search", {
+    pageTitle: "SEARCH",
+    searchingBy,
+    searchRating,
+    searchYear,
+    movies
+  });
 };
 export const handleDetail = async (req, res) => {
   const {
     params: { id }
   } = req;
-  console.log(id);
   try {
     const movie = await Movie.findById({ _id: id });
     res.render("detail", { pageTitle: `DETAIL ${movie.title}`, movie });
@@ -78,10 +82,10 @@ export const handleDelete = async (req, res) => {
   } = req;
   try {
     await Movie.findOneAndRemove({ _id: id });
-    res.redirect("home", { pageTitle: "HOME" });
   } catch (error) {
     console.log(error);
   }
+  res.redirect(routes.home);
 };
 export const handleGetEdit = async (req, res) => {
   const {

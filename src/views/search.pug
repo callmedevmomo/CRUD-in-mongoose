@@ -3,7 +3,7 @@ include mixins/movieBlock
 
 block content
     .search__header
-        h1 Searching By #{searchingBy} 
+        h1 Searching By #{searchingBy} #{searchRating} #{searchYear}
     .search__movies
         if movies.length === 0
             h5 404 Error : No Movies Found
