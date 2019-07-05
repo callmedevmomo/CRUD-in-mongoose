@@ -1,0 +1,15 @@
+extends layout/main.pug
+include mixins/movieBlock
+
+block content
+    .search__header
+        h1 Searching By #{searchingBy} 
+    .search__movies
+        if movies.length === 0
+            h5 404 Error : No Movies Found
+        each item in movies
+            +movieBlock({
+                id:item._id,
+                title:item.title,
+                rating:item.rating
+            })

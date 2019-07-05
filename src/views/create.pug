@@ -1,0 +1,20 @@
+extends layout/main.pug
+
+block content
+    .create-span
+        h5  ✅ Title is at least 3 characters long
+        h5  ✅ Rating is 0 to 10 Integer Value
+
+    .fomr-container
+        form(action=routes.create,method="post")
+            input(type="text",name="name",placeholder="NickName",required=true)
+            input(type="text",name="title",placeholder="Title",required minlength="3")
+            input(type="number",name="year",placeholder="Year",required=true)
+            input(type="number",name="rating",placeholder="Rating",required max="10")
+            textarea(name="synopsis",placeholder="Synopsis",required=true)
+            input(type="text",name="genres",placeholder="Genres",required=true)
+            input(type="submit",value="Create My Movie")
+
+
+
+

@@ -1,0 +1,12 @@
+extends layout/main.pug
+include mixins/movieBlock
+
+block content
+    
+    .movies
+        each item in movies
+            +movieBlock({
+                id:item._id,
+                title:item.title,
+                rating:item.rating
+            })

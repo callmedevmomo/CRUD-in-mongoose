@@ -1,0 +1,9 @@
+header.header
+    .header__column
+        a(href=routes.create) 
+            h3 🍿Create Movie
+    .header__column
+        form(action=routes.search,method="get")
+            input(type="text",placeholder="Searching with title",name="term" 
+            )
+            input(type="submit",value="🔎Searching🔍")

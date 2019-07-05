@@ -1,0 +1,5 @@
+mixin movieBlock(movie={})
+    .movieBlock
+        a(href=routes.movieDetail(movie.id))
+            h4.movieBlock__title=`🎬TITLE : ${movie.title}`
+            h5.movieBlock__rating=`⭐️RATING : ${movie.rating}`

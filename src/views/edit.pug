@@ -1,0 +1,24 @@
+extends layout/main.pug
+
+
+block content
+    .form-container
+        h3 😇 Edit Movie
+        form(action=routes.movieEdit(movie._id),method="post")
+            h5 ✅Title : 
+                input(type="text",name="title",value=movie.title,required minlength="3")
+            h5 ✅Year of Release :  
+                input(type="number",name="year",value=movie.year,required=true)
+            h5 ⭐️Rating :    
+                input(type="number",name="rating",value=movie.rating,required max="10")
+            h5 🎬Synopsis :     
+                textarea(name="synopsis",required=true)=movie.synopsis
+            h5 🎬Genres : 
+                input(type="text",name="genres",value=movie.genres,required=true)
+                p ⚠️ If you want to change your Genres, Please Separate it by commas ( , )!
+            h5 ✅ If you finished the edit : 
+                input(type="submit",value="🍿 UPDATED")
+        h5 ✅ Want to Delete? : 
+            a.form-container__link.form-container__link--delete(href=routes.movieDelete(movie._id)) ❌ Click me!
+            
+  
